@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Masala">
+    <meta name="author" content="Masala,chao">
+
+    <title>Masala</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Documentation extras -->
+    <link href="{{ url_for('static',filename='css/docsearch.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/docs.min.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+        <div class="navbar-nav-scroll">
+            <ul class="navbar-nav bd-navbar-nav flex-row">
+                <li class="nav-item">
+                    <a class="nav-link " href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/">退出</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+
+    <div class="container-fluid">
+        <div class="row flex-xl-nowrap">
+            <div class="col-md-3 col-xl-2 bd-sidebar">
+                <form role="search" class="bd-search d-flex align-items-center">
+                    <input type="search" class="form-control" id="search-input" placeholder="Search..."
+                        aria-label="Search for..." autocomplete="off" data-docs-version="4.5">
+                    <button class="btn bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse"
+                        data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false"
+                        aria-label="Toggle docs navigation"><svg xmlns="http://www.w3.org/2000/svg" width="30"
+                            height="30" viewBox="0 0 30 30" role="img" focusable="false">
+                            <title>Menu</title>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
+                                d="M4 7h22M4 15h22M4 23h22" />
+                        </svg></button>
+                </form>
+
+                <nav class="collapse bd-links" id="bd-docs-nav" aria-label="Main navigation">
+                    <div class="bd-toc-item active">
+                        <a class="bd-toc-link" href="/docs/4.5/getting-started/introduction/">
+                            Getting started
+                        </a>
+
+                        <ul class="nav bd-sidenav">
+                            <li class="active bd-sidenav-active">
+                                <a href="/docs/4.5/getting-started/introduction/">
+                                    Introduction
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/getting-started/download/">
+                                    Download
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/getting-started/contents/">
+                                    Contents
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/getting-started/browsers-devices/">
+                                    Browsers & devices
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/getting-started/javascript/">
+                                    JavaScript
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/getting-started/theming/">
+                                    Theming
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/getting-started/build-tools/">
+                                    Build tools
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/getting-started/webpack/">
+                                    Webpack
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/getting-started/accessibility/">
+                                    Accessibility
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bd-toc-item">
+                        <a class="bd-toc-link" href="/docs/4.5/layout/overview/">
+                            Layout
+                        </a>
+
+                        <ul class="nav bd-sidenav">
+                            <li>
+                                <a href="/docs/4.5/layout/overview/">
+                                    Overview
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/layout/grid/">
+                                    Grid
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/layout/utilities-for-layout/">
+                                    Utilities for layout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bd-toc-item">
+                        <a class="bd-toc-link" href="/docs/4.5/content/reboot/">
+                            Content
+                        </a>
+
+                        <ul class="nav bd-sidenav">
+                            <li>
+                                <a href="/docs/4.5/content/reboot/">
+                                    Reboot
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/content/typography/">
+                                    Typography
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/content/code/">
+                                    Code
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/content/images/">
+                                    Images
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/content/tables/">
+                                    Tables
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs/4.5/content/figures/">
+                                    Figures
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </div>
+
+
+            <nav class="d-none d-xl-block col-xl-2 bd-toc" aria-label="Secondary navigation">
+                <ul class="section-nav">
+                    <li class="toc-entry toc-h2"><a href="#quick-start">Quick start</a>
+                        <ul>
+                            <li class="toc-entry toc-h3"><a href="#css">CSS</a></li>
+                            <li class="toc-entry toc-h3"><a href="#js">JS</a>
+                                <ul>
+                                    <li class="toc-entry toc-h4"><a href="#bundle">Bundle</a></li>
+                                    <li class="toc-entry toc-h4"><a href="#separate">Separate</a></li>
+                                    <li class="toc-entry toc-h4"><a href="#components">Components</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry toc-h2"><a href="#starter-template">Starter template</a></li>
+                    <li class="toc-entry toc-h2"><a href="#important-globals">Important globals</a>
+                        <ul>
+                            <li class="toc-entry toc-h3"><a href="#html5-doctype">HTML5 doctype</a></li>
+                            <li class="toc-entry toc-h3"><a href="#responsive-meta-tag">Responsive meta tag</a></li>
+                            <li class="toc-entry toc-h3"><a href="#box-sizing">Box-sizing</a></li>
+                            <li class="toc-entry toc-h3"><a href="#reboot">Reboot</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry toc-h2"><a href="#community">Community</a></li>
+                </ul>
+            </nav>
+
+
+            <main class="col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
