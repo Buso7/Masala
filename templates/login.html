@@ -7,7 +7,7 @@
     <meta name="description" content="Masala">
     <meta name="author" content="Masala,chao">
 
-    <title>Masala</title>
+    <title>登录</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
@@ -20,23 +20,31 @@
 
 <body>
     <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
-        <div class="navbar-nav-scroll">
-        </div>
     </header>
-
-
     <div class="container-fluid">
         <div class="row flex-xl-nowrap">
             <div class="col-md-3 col-xl-2"></div>
             <div class="d-none d-xl-block col-xl-2 bd-toc">
-                <div>
-                    <main class="col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
-                        <label>Name</label>
-                        <input type="text" id
-                    </main>
-                </div>
+                <form action='{{ url_for("login") }}' method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">用户名</label>
+                        <input type="email" class="form-control" id="name" name='name'>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">密码</label>
+                        <input type="password" class="form-control" id="pwd" name='pwd'>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="reme">
+                        <label class="form-check-label" for="exampleCheck1">记住我</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">确定</button>
+                </form>
             </div>
-            <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+        </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
