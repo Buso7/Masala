@@ -29,11 +29,11 @@
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                     <div class="form-group">
                         <label for="exampleInputEmail1">用户名</label>
-                        <input type="email" class="form-control" id="name" name='name'>
+                        <input type="text" class="form-control" id="name" name='name' required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">密码</label>
-                        <input type="password" class="form-control" id="pwd" name='pwd'>
+                        <input type="password" class="form-control" id="pwd" name='pwd' required>
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1" name="reme">
@@ -41,6 +41,15 @@
                     </div>
                     <button type="submit" class="btn btn-primary">确定</button>
                 </form>
+                {% with msgs = get_flashed_messages(category_filter=['login']) %}
+                {% if msgs %}
+                {% for m in msgs %}
+                <div class="alert alert-danger" role="alert">
+                    {{ m }}
+                  </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
             </div>
         </div>
     </div>
