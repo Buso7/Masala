@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for,request, Response
+from flask import Flask, render_template, url_for,request, Response,redirect
 from flask_login import login_required, login_user, logout_user
 from flask_wtf.csrf import CSRFProtect
 
@@ -13,7 +13,9 @@ csrf = CSRFProtect(app)
 
 @login_manager.user_loader
 def load_user(id):
-    return None
+    u = AuthModel()
+    u.id=1
+    return u
 
 @app.route('/')
 @login_required
@@ -25,11 +27,15 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
     if request.method == 'POST':
-        return 'login success'
+        u = AuthModel()
+        u.id='1'
+        login_user(u)
+        return redirect('/')
 
 @app.route('/logout')
 def logout():
-    return url_for('/login')
+    logout_user()
+    return redirect('/')
 
 @app.route('/register')
 def register():
