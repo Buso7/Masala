@@ -5,8 +5,8 @@ import hashlib
 from flask_socketio import SocketIO
 from datetime import date,datetime
 
-from auth import login_manager
-from db_manager import get_user_by_id,get_user_by_md5,Mas_User
+from auth import login_manager,AuthModel
+from db_manager import get_user_by_id,get_user_by_md5,Mas_User,create_user
 
 app=Flask(__name__)
 app.secret_key=r'masala'
@@ -16,7 +16,8 @@ csrf = CSRFProtect(app)
 
 @login_manager.user_loader
 def load_user(id):
-    return get_user_by_id(id)
+    mu =  get_user_by_id(id)
+    return AuthModel(mu.id)
 
 @app.route('/')
 @login_required
@@ -38,8 +39,7 @@ def login():
         pwd_md5 = hashlib.md5((name+pwd).encode())
         u = get_user_by_md5(pwd_md5.hexdigest())
         if u is not None:
-            m_user = AuthModel()
-            m_user.id=u.id
+            m_user = AuthModel(u.id)
             login_user(m_user,reme)
             return redirect('/')
         flash('用户名或密码错误','login')
@@ -56,21 +56,20 @@ def register():
     if request.method=='GET':
         return render_template('register.html')
     if request.method=='POST':
-        #必填
-        name = request.form['name']
-        email = request.form['email']
-        pwd = request.form['pwd']
-        pwd2 = request.form['pwd2']
-        gender_id=request.form['gender_id']
-        birthday = request.form['birthday']
-        state_id = request.form['state']
-        edubackground_id = request.form['edubackground_id']
-        income_id = request.form['income_id']
-        province_id = request.form['province']
-        city_id = request.form['city']
-        height = request['height']
-        weight = request['weight']
-        register_time = datetime.now()
-        last_access = datetime.now()
-        return 'ok'
-    return None
+        args = {
+        'name' : request.form['name'],
+        'email' : request.form['email'],
+        'pwd' : hashlib.md5((request.form['name']+request.form['pwd']).encode()).hexdigest(),
+        'gender_id' : request.form['gender_id'],
+        'birthday' : request.form['birthday'],
+        'age' : datetime.now().date().year - datetime.strptime(request.form['birthday'],'%Y-%m-%d').date().year,
+        'state_id' : request.form['state_id'],
+        'edubackground_id' : request.form['edubackground_id'],
+        'income_id' : request.form['income_id'],
+        'province_id' : request.form['province_id'],
+        'city_id' : request.form['city_id'],
+        'register_time' : datetime.now(),
+        'last_access' : datetime.now(),
+        'account_status' : 0}
+        create_user(**args)
+    return redirect('register')
