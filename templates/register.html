@@ -34,7 +34,7 @@
                                 <label>头像</label>
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" class="form-control" id="avt" value="masala"
+                                        <input type="text" class="form-control" id="avt" value=""
                                             placeholder='输入文本生成头像'>
                                     </div>
                                     <div class="col">
@@ -159,6 +159,10 @@
         }
         function gen_avatar() {
             var txt = $('#avt').val();
+            if(txt.length>10 || txt.length<=0){
+                alert("请输入长度1~10的字符");
+                return false;
+            }
             $.ajax({
                 url:"{{ url_for('gen_avatar') }}",
                 data:{'txt':txt},
