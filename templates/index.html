@@ -33,22 +33,30 @@
 
     <div class="container-fluid">
         <div class="row flex-xl-nowrap">
+            <!--左边栏-->
             <div class="col-md-3 col-xl-2 bd-sidebar">
                 <nav class="collapse bd-links" id="bd-docs-nav" aria-label="Main navigation">
                     <div class="bd-toc-item active">
-                        <span class="bd-toc-link">左边栏</span>
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ avatars.robohash('可不可以') }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ current_user.name }}</h5>
+                                <p class="card-text">sdfada</p>
+                                <a href="#" class="btn btn-primary">1</a>
+                            </div>
+                        </div>
                     </div>
                 </nav>
-
             </div>
 
-
+            <!--右边栏-->
             <nav class="d-none d-xl-block col-xl-2 bd-toc" aria-label="Secondary navigation">
                 <ul class="section-nav">
                     <li class="toc-entry toc-h2">右边栏</li>
                 </ul>
             </nav>
 
+            <!--中间-->
             <main class="col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
                 <div class="card">
                     <div class="card-body">

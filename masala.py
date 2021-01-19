@@ -7,17 +7,21 @@ from datetime import date,datetime
 
 from auth import login_manager,AuthModel
 from db_manager import get_user_by_id,get_user_by_md5,Mas_User,create_user
+from flask_avatars import Avatars
 
 app=Flask(__name__)
 app.secret_key=r'masala'
 
 login_manager.init_app(app)
 csrf = CSRFProtect(app)
+avatar = Avatars(app)
 
 @login_manager.user_loader
 def load_user(id):
     mu =  get_user_by_id(id)
-    return AuthModel(mu.id)
+    au = AuthModel(mu.id)
+    au.name=mu.name
+    return au
 
 @app.route('/')
 @login_required
@@ -40,6 +44,7 @@ def login():
         u = get_user_by_md5(pwd_md5.hexdigest())
         if u is not None:
             m_user = AuthModel(u.id)
+            m_user.name=u.name
             login_user(m_user,reme)
             return redirect('/')
         flash('用户名或密码错误','login')
@@ -73,3 +78,8 @@ def register():
         'account_status' : 0}
         create_user(**args)
     return redirect('register')
+
+@app.route('/gen_avatar',methods=['GET'])
+def gen_avatar():
+    txt = request.args['txt']
+    return avatar.robohash(txt)
