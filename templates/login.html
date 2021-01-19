@@ -20,13 +20,14 @@
 
 <body>
     <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+        请登录
     </header>
     <div class="container-fluid">
         <div class="row flex-xl-nowrap">
             <div class="col-md-3 col-xl-2"></div>
-            <div class="d-none d-xl-block col-xl-2 bd-toc">
-                <form action='{{ url_for("login") }}' method="POST">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="d-none d-xl-block col-xl-4 bd-toc">
+                <form id=fmlogin action='{{ url_for("login") }}' method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                     <div class="form-group">
                         <label for="exampleInputEmail1">用户名</label>
                         <input type="text" class="form-control" id="name" name='name' required>
@@ -40,19 +41,21 @@
                         <label class="form-check-label" for="exampleCheck1">记住我</label>
                     </div>
                     <button type="submit" class="btn btn-primary">确定</button>
+                    <a href="{{ url_for('register') }}" class="btn btn-primary">没有账号？去注册</a>
                 </form>
                 {% with msgs = get_flashed_messages(category_filter=['login']) %}
                 {% if msgs %}
                 {% for m in msgs %}
                 <div class="alert alert-danger" role="alert">
                     {{ m }}
-                  </div>
+                </div>
                 {% endfor %}
                 {% endif %}
                 {% endwith %}
             </div>
         </div>
     </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
 </body>
 
